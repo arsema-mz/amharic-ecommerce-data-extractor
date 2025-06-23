@@ -1,0 +1,7 @@
+telethon==1.30.3
+pandas==2.2.2
+numpy==1.26.4
+regex==2024.5.15
+nltk==3.8.1
+python-dotenv==1.0.1
+ 
