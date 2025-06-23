@@ -8,3 +8,6 @@ venv/
 
 # Jupyter Notebook checkpoints
 .ipynb_checkpoints/  
+
+data/raw/
+data/combined_messages.csv
