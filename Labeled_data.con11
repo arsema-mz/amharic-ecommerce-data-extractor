@@ -1,0 +1,30 @@
+40,41,42,43	B-PRICE
+Price	I-PRICE
+3700	I-PRICE
+birr	I-PRICE
+📌አድራሻ-ሜክሲኮ	B-LOC
+ጀርባ	B-Product
+መዚድ	I-Product
+ፕላዛ	I-Product
+EthioBrand	B-Product
+Reebok	B-Product
+Winterized	I-Product
+40,41,42,43,44	B-PRICE
+Price	I-PRICE
+3600	I-PRICE
+birr	I-PRICE
+📌አድራሻ-ሜክሲኮ	B-LOC
+ጀርባ	B-Product
+መዚድ	I-Product
+ፕላዛ	I-Product
+EthioBrand	B-Product
+ℹ️ℹ️ℹ️	B-Product
+Ice	B-Product
+cube	I-Product
+Bottle	B-Product
+ice	I-Product
+cube	I-Product
+maker	I-Product
+pitcher	I-Product
+ice	I-Product
+cubes	I-Product

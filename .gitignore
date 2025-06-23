@@ -11,3 +11,7 @@ venv/
 
 data/raw/
 data/combined_messages.csv
+data/extracted_entities.csv
+data/structured_messages.csv
+
+*.csv
