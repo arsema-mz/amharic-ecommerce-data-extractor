@@ -2,8 +2,8 @@ from telethon.sync import TelegramClient
 from telethon.tl.functions.messages import GetHistoryRequest
 import json
 
-api_id = 28536612       
-api_hash = '9da905b4322010cb5d0f733f80187c6f'  
+api_id = 123456       
+api_hash = 'the_given_hash_code'  
 
 client = TelegramClient('session_name', api_id, api_hash)
 
