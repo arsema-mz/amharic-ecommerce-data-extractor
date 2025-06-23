@@ -4,7 +4,8 @@ import pandas as pd
 
 all_messages = []
 
-json_files = glob.glob("../data/raw/*_messages.json")
+json_files = glob.glob("data/raw/*_messages.json")
+print("Found files:", json_files)  # Debug line
 
 for file in json_files:
     with open(file, 'r', encoding='utf-8') as f:
