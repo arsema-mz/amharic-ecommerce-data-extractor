@@ -15,3 +15,10 @@ data/extracted_entities.csv
 data/structured_messages.csv
 
 *.csv
+
+*.model
+*.bin
+*.h5
+notebooks/amharic_ner_model/
+
+*.json
