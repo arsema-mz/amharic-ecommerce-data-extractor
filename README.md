@@ -1,55 +1,95 @@
-# README: Building an Amharic E-commerce Data Extractor
+# 🛍️ Amharic E-commerce Data Extractor
 
-## Project Overview
+Transform messy Amharic Telegram e-commerce messages into structured insights using Named Entity Recognition (NER). This project helps identify key entities like **Products**, **Prices**, and **Locations**, laying the foundation for a unified e-commerce intelligence platform.
 
-In this project, I transformed messy Telegram posts into a smart FinTech engine that helps identify the best vendors for loan opportunities in the Ethiopian e-commerce landscape. My goal was to ingest data from various Telegram channels, preprocess it, and extract meaningful entities for further analysis.
+## 📌 Overview
 
-## Tasks Overview
+Telegram is a growing marketplace in Ethiopia. However, it is decentralized and messy. This project extracts structured business data from unstructured Telegram messages in Amharic, enabling EthioMart to build a centralized vendor analysis platform to identify top-performing sellers—especially for financial services like loans.
 
-### Task 1: Data Ingestion and Data Preprocessing
+## 🎯 Objectives
 
-#### Objective
-I set up a data ingestion system to fetch messages from multiple Ethiopian-based Telegram e-commerce channels and prepared the raw data for entity extraction.
+- Build a pipeline to scrape, clean, and preprocess Amharic Telegram messages.
+- Manually label Amharic messages for Named Entity Recognition (NER) in CoNLL format.
+- Fine-tune transformer-based and spaCy-based NER models to detect:
+  - `Product`
+  - `Price`
+  - `Location`
+- Store results for downstream vendor profiling and ranking.
+- Explore model interpretability using SHAP/LIME (optional).
 
-#### Steps
 
-1. **Channel Selection**:
-   - I identified and connected to at least 5 relevant Telegram channels to gather data.
+## 🧠 Skills & Tools Used
 
-2. **Message Ingestion**:
-   - I implemented a custom scraper to collect text, images, and documents as they were posted in real time.
+- **Amharic NLP:** Tokenization and preprocessing for Amharic
+- **NER Modeling:** spaCy, Hugging Face Transformers (`xlm-roberta-base`)
+- **Labeling Format:** CoNLL-style annotations
+- **Model Evaluation:** F1-score, precision, recall
+- **Visualization (optional):** SHAP, LIME for model explainability
 
-3. **Data Preprocessing**:
-   - I tokenized and normalized the text data while addressing Amharic-specific linguistic features.
-   - I cleaned and structured the data into a unified format, separating metadata (e.g., sender, timestamp) from message content.
+## 🛠️ Setup & Installation
 
-4. **Data Storage**:
-   - I stored the preprocessed data in a structured format for further analysis.
+1. Clone this repo:
+   ```bash
+   git clone https://github.com/yourusername/amharic-ecommerce-data-extractor.git
+   cd amharic-ecommerce-data-extractor
+````
 
-### Task 2: Label a Subset of Dataset in CoNLL Format
+2. Create a virtual environment and install dependencies:
 
-#### Objective
-I labeled a portion of the provided dataset in the CoNLL format, which is commonly used for Named Entity Recognition (NER) tasks.
+   ```bash
+   pip install -r requirements.txt
+   ```
 
-#### Steps
+3. (Optional) For Hugging Face login:
 
-1. **Dataset Utilization**:
-   - I used the "Message" column of the larger dataset, which contains text descriptions of various products and entities.
+   ```bash
+   huggingface-cli login
+   ```
 
-2. **CoNLL Format**:
-   - I labeled each token (word) on its own line, followed by its entity label.
-   - I ensured blank lines separate individual sentences/messages.
+## 🚀 Usage
 
-3. **Entity Types**:
-   - I assigned labels based on the following entity types:
-     - **B-Product**: Beginning of a product entity (e.g., "Baby bottle").
-     - **I-Product**: Inside a product entity (e.g., the word "bottle" in "Baby bottle").
-     - **B-LOC**: Beginning of a location entity (e.g., "Addis Ababa", "Bole").
-     - **I-LOC**: Inside a location entity (e.g., the word "Ababa" in “Addis Ababa”).
-     - **B-PRICE**: The beginning of a price entity (e.g., "ዋጋ 1000 ብር").
-     - **I-PRICE**: Inside a price entity (e.g., the word "1000" in “ዋጋ 1000 ብር”).
-     - **O**: Tokens that are outside any entities.
+* **Telegram Scraper:**
 
-4. **Labeling**:
-   - I labeled at least 30 messages from the provided dataset and saved my work in a plain text file in the CoNLL format.
+  ```bash
+  python scripts/scraper.py
+  ```
+
+* **Convert Labeled Data:**
+
+  ```bash
+  python scripts/conll_to_dataframe.py
+  python scripts/group_csv.py
+  ```
+
+* **Train spaCy NER Model:**
+
+  ```bash
+  python scripts/train_spacy_ner.py
+  ```
+
+* **Inference:**
+
+  ```python
+  from spacy import load
+  nlp = load("amharic_ner_model")
+  doc = nlp("መዚድ ፕላዛ በ 3600 ብር አለ።")
+  for ent in doc.ents:
+      print(ent.text, ent.label_)
+  ```
+
+## 📊 Results
+
+| Entity   | F1-Score (spaCy) |
+| -------- | ---------------- |
+| Product  | 0.83             |
+| Price    | 0.91             |
+| Location | 0.78             |
+
+> ✅ Model trained for 10 epochs with decreasing loss. Saved in `amharic_ner_model/`.
+
+## ⚠️ Challenges
+
+* Tokenization issues with comma-joined numbers (e.g., "40,41,42")
+* Limited labeled data for fine-tuning large models
+* Slow inference with Hugging Face models on local machines
 
